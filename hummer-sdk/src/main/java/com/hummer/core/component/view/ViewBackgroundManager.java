@@ -45,14 +45,14 @@ public class ViewBackgroundManager {
 
     private void setBackgroundDrawable(Drawable drawable) {
         // required so that drawable callback is cleared before we add the drawable back as a part of LayerDrawable
-        NJViewHelper.setBackground(mView, null);
+        HMViewHelper.setBackground(mView, null);
         Drawable backgroundDrawable = mView.getBackground();
         if (backgroundDrawable == null) {
-            NJViewHelper.setBackground(mView, drawable);
+            HMViewHelper.setBackground(mView, drawable);
         } else {
             LayerDrawable layerDrawable =
                     new LayerDrawable(new Drawable[] {drawable, backgroundDrawable});
-            NJViewHelper.setBackground(mView, layerDrawable);
+            HMViewHelper.setBackground(mView, layerDrawable);
         }
     }
 
