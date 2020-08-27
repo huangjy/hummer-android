@@ -35,14 +35,14 @@ public class HMJSBuiltin {
             "}\n" +
             "class HMJSUtility extends Object {\n" +
             "    static createClass(className){\n" +
-            "        let privateClass = class Private extends HMJSObject {\n" +
-            "            getPrivate(...args){\n" +
-            "                var objcClass = 'OBJC_' + className;\n" +
-            "                return __GLOBAL__[objcClass](...args);\n" +
-            "            }\n" +
-            "        };\n" +
-            "        Object.defineProperty(privateClass, 'name', {value: className});\n" +
-            "        return privateClass;\n" +
+        	"		return ({\n" + 
+            "			[className] : class extends HMJSObject {\n" + 
+            "    			getPrivate(...args){\n" + 
+            "        			var nativeClass = 'NATIVE_' + className;\n" +
+            "        			return __GLOBAL__[nativeClass](...args);\n" +
+            "				}\n" +
+            "			}\n" + 
+            "    	})[className];\n" +
             "    }\n" +
             "    static registerStatics(className, methods){\n" +
             "        for(let method of methods){\n" +
@@ -69,5 +69,4 @@ public class HMJSBuiltin {
             "    return {'type':'CGRect','x':x,'y':y, 'width':width, 'height':height };\n" +
             "}"
     ).toString();
-
 }
